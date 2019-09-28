@@ -29,10 +29,10 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:id])
-    @place.destroy
-    redirect_to root_path
-  end 
+  @place = Place.find(params[:id])
+  @place.destroy
+  redirect_to root_path
+  end
 
   private
 
@@ -40,3 +40,5 @@ class PlacesController < ApplicationController
     params.require(:place).permit(:name, :description, :address)
   end
 end
+
+  
