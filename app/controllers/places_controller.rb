@@ -1,12 +1,13 @@
 class PlacesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  
   def index
-    @places = Place.all.paginate(page: params[:page], per_page: 1)
+    @places = Place.all
   end
 
-  def new 
+  def new
     @place = Place.new
-  end 
+  end
 
   def create
     current_user.places.create(place_params)
@@ -17,11 +18,13 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
 
+  def edit
+    @place = Place.find(params[:id])
+  end
 
-    private
+  private
 
   def place_params
     params.require(:place).permit(:name, :description, :address)
   end
-
 end
