@@ -1,0 +1,9 @@
+class AddCaptionPlaceAndUserToPhotos < ActiveRecord::Migration[5.2]
+  def change
+    add_column :photos, :user_id, :integer
+    add_column :photos, :place_id, :integer
+    add_column :photos, :caption, :string
+  
+  end
+end
+ 
