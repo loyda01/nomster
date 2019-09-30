@@ -1,6 +1,7 @@
 <%= will_paginate @places %>
-<% @places.each do |place| %>
 
+<%# Content %>
+<% @places.each do |place| %>
   <div class="booyah-box col-10 offset-1">
     <h1><%= link_to place.name, place_path(place) %></h1><br />
     <i><%= place.address %></i><br /><br />
@@ -10,6 +11,7 @@
       <small><%= place.user.email %></small>
     <% end %>
 
+<%# Last Comment/Photo %>
   <% if place.comments.present? %>  
     <div class="col-12">
       <blockquote>
@@ -22,6 +24,16 @@
     </div>
   <% end %>
     
+<% if place.photos.present? %>
+    <div class="col-8" align="center">
+       <% if place.photos.last.present? %>
+        <%= image_tag place.photos.last.picture.to_s, class: 'index_user_photo img-fluid' %>
+       <% end %>
+       <br />
+       <%= place.photos.last.caption %> <br />
+        <small><%= place.photos.last.user.email %></small>
+    </div>
+    <% end %>
   </div>
 
 <% end %>
